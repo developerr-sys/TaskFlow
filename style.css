@@ -372,6 +372,13 @@ html {
   font-family: var(--font-body);
 }
 
+img,
+video,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
 body {
   background: var(--bg-gradient);
   color: var(--text-main);
@@ -441,6 +448,7 @@ button, input, select, textarea {
 .sidebar {
   position: sticky;
   top: 32px;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 22px;
@@ -1600,11 +1608,28 @@ body:not([class*="theme-"]) .modal-card {
 
   .filter-section {
     flex-direction: row;
+    flex-wrap: wrap;
   }
 
   .btn-filter {
-    flex: 1;
+    flex: 1 1 auto;
+    min-width: 0;
     text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .stat-item {
+    padding: 11px 12px;
+    gap: 8px;
+  }
+
+  .stat-label {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .add-task-row {
