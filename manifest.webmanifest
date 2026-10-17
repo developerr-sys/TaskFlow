@@ -1,0 +1,28 @@
+{
+  "name": "TaskFlow — Free To-Do List & Task Manager App",
+  "short_name": "TaskFlow",
+  "description": "Free online to-do list app with priorities, categories, due dates, search, filters and progress tracking. Tasks are stored privately in your browser.",
+  "start_url": ".",
+  "scope": ".",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f8fafc",
+  "theme_color": "#4f46e5",
+  "lang": "en-US",
+  "dir": "ltr",
+  "categories": ["productivity", "utilities", "lifestyle"],
+  "icons": [
+    {
+      "src": "og-image.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "og-image.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

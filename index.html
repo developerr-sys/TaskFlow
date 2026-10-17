@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ================= Primary SEO ================= -->
+    <title>TaskFlow — Free To-Do List & Task Manager App</title>
+    <meta name="description"
+        content="TaskFlow is a free online to-do list app. Add tasks with priority, category and due date, then search, sort, filter and track completion — all saved privately in your browser.">
+    <meta name="keywords"
+        content="to-do list, todo app, task manager, daily planner, checklist, priority tasks, due dates, productivity web app, offline todo, localStorage tasks">
+    <meta name="author" content="Anmol Akbar">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <link rel="canonical" href="https://taskflow.example.com/">
+
+    <!-- ================= Browser & theme UI ================= -->
+    <meta name="theme-color" content="#4f46e5">
+    <meta name="color-scheme" content="light dark">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" type="image/svg+xml"
+        href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234f46e5'/%3E%3Cstop offset='1' stop-color='%237c3aed'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='44' height='44' rx='12' fill='url(%23g)'/%3E%3Cpath d='M10 15l4 4 8-8M10 29l4 4 8-8M26 15h9M26 29h9' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+    <link rel="apple-touch-icon" href="og-image.png">
+
+    <!-- ================= Performance: font preconnect ================= -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- ================= Open Graph (Facebook / LinkedIn / WhatsApp) ================= -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="TaskFlow">
+    <meta property="og:url" content="https://taskflow.example.com/">
+    <meta property="og:title" content="TaskFlow — Free To-Do List & Task Manager App">
+    <meta property="og:description"
+        content="Organize your day with priorities, categories, due dates and progress tracking. 100% private — tasks never leave your browser.">
+    <meta property="og:image" content="https://taskflow.example.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="TaskFlow dashboard with sidebar, progress ring and colorful task cards">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ================= Twitter / X Cards ================= -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TaskFlow — Free To-Do List & Task Manager App">
+    <meta name="twitter:description"
+        content="Organize your day with priorities, categories, due dates and progress tracking. 100% private — tasks never leave your browser.">
+    <meta name="twitter:image" content="https://taskflow.example.com/og-image.png">
+    <meta name="twitter:image:alt" content="TaskFlow dashboard preview">
+
+    <!-- ================= Structured Data (JSON-LD) ================= -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "TaskFlow",
+      "url": "https://taskflow.example.com/",
+      "description": "Free online to-do list and task manager app with priorities, categories, due dates, search, sorting, filters and progress tracking. Tasks are stored locally in the browser.",
+      "applicationCategory": "ProductivityApplication",
+      "applicationSubCategory": "To-Do List / Task Manager",
+      "operatingSystem": "Any (web browser)",
+      "browserRequirements": "Requires JavaScript. Works in all modern browsers.",
+      "inLanguage": "en",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "screenshot": "https://taskflow.example.com/og-image.png",
+      "featureList": [
+        "Add, edit and delete tasks",
+        "Low / Medium / High priority levels",
+        "Work, Personal, Health, Finance and Other categories",
+        "Due dates with overdue alerts",
+        "Instant search, sorting and status filters",
+        "Completion progress ring and live stats",
+        "Private local storage — no account needed",
+        "Seven adjustable color themes"
+      ]
+    }
+    </script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Background Ambient Glows -->
+    <div class="ambient-bg">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="app-shell">
+        <!-- ======================= Sidebar ======================= -->
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="brand-mark" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2.1" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="m2.8 7.3 3 3 6-6.2" />
+                        <path d="m2.8 16.9 3 3 6-6.2" />
+                        <path d="M14.6 7.6h6.4" />
+                        <path d="M14.6 17.4h6.4" />
+                    </svg>
+                </span>
+                <span class="brand-name">TaskFlow</span>
+            </div>
+            <p class="sidebar-date" id="current-date"></p>
+
+            <!-- Theme Swatches -->
+            <div class="theme-picker">
+                <span class="picker-label">Appearance</span>
+                <div class="theme-swatches" role="group" aria-label="Select theme">
+                    <button class="theme-option" data-theme="light" title="Light Mode" aria-label="Light Mode">
+                        <span class="swatch light-preview"></span>
+                    </button>
+                    <button class="theme-option" data-theme="dark" title="Dark Mode" aria-label="Dark Mode">
+                        <span class="swatch dark-preview"></span>
+                    </button>
+                    <button class="theme-option" data-theme="emerald" title="Emerald" aria-label="Emerald theme">
+                        <span class="swatch emerald-preview"></span>
+                    </button>
+                    <button class="theme-option" data-theme="sunset" title="Sunset" aria-label="Sunset theme">
+                        <span class="swatch sunset-preview"></span>
+                    </button>
+                    <button class="theme-option" data-theme="ocean" title="Ocean" aria-label="Ocean theme">
+                        <span class="swatch ocean-preview"></span>
+                    </button>
+                    <button class="theme-option" data-theme="dusk" title="Dusk" aria-label="Dusk theme">
+                        <span class="swatch dusk-preview"></span>
+                    </button>
+                    <button class="theme-option" data-theme="autumn" title="Autumn" aria-label="Autumn theme">
+                        <span class="swatch autumn-preview"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Completion Ring -->
+            <section class="ring-card">
+                <div class="ring-wrap">
+                    <svg class="ring-svg" viewBox="0 0 120 120" aria-hidden="true">
+                        <circle class="ring-track" cx="60" cy="60" r="52"></circle>
+                        <circle id="progress-ring-fill" class="ring-fill" cx="60" cy="60" r="52"></circle>
+                    </svg>
+                    <div class="ring-center">
+                        <strong id="progress-percent">0%</strong>
+                        <span>completed</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics -->
+            <section class="stats-section" aria-label="Task statistics">
+                <div class="stat-item stat-total">
+                    <span class="stat-dot"></span>
+                    <span class="stat-label">Total</span>
+                    <strong id="total-tasks">0</strong>
+                </div>
+                <div class="stat-item stat-active">
+                    <span class="stat-dot"></span>
+                    <span class="stat-label">Active</span>
+                    <strong id="active-tasks">0</strong>
+                </div>
+                <div class="stat-item stat-completed">
+                    <span class="stat-dot"></span>
+                    <span class="stat-label">Completed</span>
+                    <strong id="completed-tasks">0</strong>
+                </div>
+            </section>
+
+            <!-- Filter Nav -->
+            <nav class="filter-section" aria-label="Filter tasks">
+                <button class="btn-filter active" data-filter="all">All Tasks</button>
+                <button class="btn-filter" data-filter="active">Active</button>
+                <button class="btn-filter" data-filter="completed">Completed</button>
+            </nav>
+
+            <!-- Clear Completed -->
+            <section class="clear-section">
+                <button id="clear-completed-btn" class="btn btn-danger">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 6h18" />
+                        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6" />
+                        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2" />
+                        <line x1="10" x2="10" y1="11" y2="17" />
+                        <line x1="14" x2="14" y1="11" y2="17" />
+                    </svg>
+                    <span>Clear Completed</span>
+                </button>
+            </section>
+        </aside>
+
+        <!-- ======================= Main Content ======================= -->
+        <main class="main-content">
+            <header class="content-header">
+                <div class="header-titles">
+                    <h1>My Tasks</h1>
+                    <p class="subtitle">Plan your day, one task at a time</p>
+                </div>
+
+                <!-- Search & Sort -->
+                <div class="toolbar">
+                    <div class="search-container">
+                        <span class="search-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="11" cy="11" r="8" />
+                                <path d="m21 21-4.3-4.3" />
+                            </svg>
+                        </span>
+                        <label for="search-input" class="sr-only">Search tasks</label>
+                        <input type="text" id="search-input" placeholder="Search tasks...">
+                    </div>
+                    <div class="sort-container">
+                        <label for="sort-select" class="sr-only">Sort Tasks</label>
+                        <select id="sort-select">
+                            <option value="newest">Newest First</option>
+                            <option value="oldest">Oldest First</option>
+                            <option value="priority-desc">Priority: High to Low</option>
+                            <option value="priority-asc">Priority: Low to High</option>
+                            <option value="due-soon">Due Date: Soonest</option>
+                        </select>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Add Task Composer -->
+            <section class="composer-card">
+                <div class="add-task-row main-row">
+                    <label for="task-input" class="sr-only">Enter a new task</label>
+                    <input type="text" id="task-input" placeholder="What needs to be done?">
+                    <button id="add-task-btn" class="btn btn-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <path d="M5 12h14" />
+                            <path d="M12 5v14" />
+                        </svg>
+                        <span>Add Task</span>
+                    </button>
+                </div>
+                <div class="add-task-row meta-row">
+                    <div class="meta-item">
+                        <label for="task-priority" class="meta-label">Priority</label>
+                        <select id="task-priority">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+
+                    <div class="meta-item">
+                        <label for="task-category" class="meta-label">Category</label>
+                        <select id="task-category">
+                            <option value="Work" selected>Work</option>
+                            <option value="Personal">Personal</option>
+                            <option value="Health">Health</option>
+                            <option value="Finance">Finance</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="meta-item">
+                        <label for="task-date" class="meta-label">Due Date</label>
+                        <input type="date" id="task-date">
+                    </div>
+                </div>
+            </section>
+            <p id="validation-msg" class="validation-msg" aria-live="polite"></p>
+
+            <!-- Task List -->
+            <section class="task-list-container">
+                <ul id="task-list" aria-live="polite"></ul>
+                <div id="empty-state" class="empty-state hidden">
+                    <div class="empty-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round">
+                            <rect width="18" height="18" x="3" y="3" rx="2" />
+                            <path d="m9 12 2 2 4-4" />
+                        </svg>
+                    </div>
+                    <h3 id="empty-title">All caught up!</h3>
+                    <p id="empty-desc">No tasks found. Add a new task to get started.</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- SEO-friendly content footer -->
+    <footer class="app-footer">
+        <p><strong>TaskFlow</strong> is a simple, free to-do list and task manager app for planning your day —
+            organize tasks by priority, category and due date, with instant search, filters and progress tracking.
+            Your tasks are stored privately in your own browser; no sign-up required.</p>
+    </footer>
+
+    <!-- Custom Confirm Modal -->
+    <div id="confirm-modal" class="modal-overlay hidden">
+        <div class="modal-card">
+            <h3 id="modal-title">Confirm Action</h3>
+            <p id="modal-message">Are you sure you want to proceed?</p>
+            <div class="modal-actions">
+                <button id="modal-cancel-btn" class="btn btn-secondary">Cancel</button>
+                <button id="modal-confirm-btn" class="btn btn-primary-danger">Confirm</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast" aria-live="assertive"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
